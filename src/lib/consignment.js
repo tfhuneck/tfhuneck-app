@@ -14,7 +14,7 @@ const consignmentPage = [
   {
     title: 'Requirements',
     text: {
-      p1: `The overeall scope of this project was to built a User Portal with a clean dashboard that allows clients to effortlessly find and view the status and details of their consigned items throughout the various auction stages.`,
+      p1: `The overall scope of this project was to built a User Portal with a clean dashboard that allows clients to effortlessly find and view the status and details of their consigned items throughout the various auction stages.`,
       p2: `The application needs to automatically track the auction process and selling status of the items listed on eBay and calculate the account balance for each user.`, 
       p3: `Endusers also need to be able to track their total balance as well as the payouts of individual listings. The users need to have the ability to request balance payouts.`,
       p4: `Finally the application also demands an admin dashboard, to manage Users, view and manage consigned items, and manage user payout and account balances.`
