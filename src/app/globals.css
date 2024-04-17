@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+  :root{
+    --bg-start: #F0F2F6;
+    --bg-end: #e2e8f0;
+    --bg-color: #F0F2F6;
+    --content: #0f172a;
+    --bg-opacity: 50%;
+  }
+
+  @media(prefers-color-scheme: dark){
+    :root{
+      --bg-start: #0a0a0a;
+      --bg-end: #01030b;
+      --bg-color: #01030b;
+      --content: #e2e8f0;
+      --bg-opacity: 30%;
+    }
+  }
+
+  /* If the user switchs light mode */
+  :root[style="color-scheme: light;"] {
+    --bg-start: #F0F2F6;
+    --bg-end: #e2e8f0;
+    --bg-color: #F0F2F6;
+    --content: #0f172a;
+    --bg-opacity: 50%;
+  }
+  
+  /* If the user switchs dark mode */
+  :root[style="color-scheme: dark;"] {
+    --bg-start: #0a0a0a;
+    --bg-end: #01030b;
+    --bg-color: #01030b;
+    --content: #e2e8f0;
+    --bg-opacity: 30%;
+  }
+
+
+body {
+  /* overflow: scroll; */
+  --scroll-behavior: smooth!important;
+  scroll-behavior: smooth!important;
+  background: linear-gradient(to bottom, var(--bg-start), var(--bg-end));
+  background-color: var(--bg-color);
+  color: var(--content);
+
+  padding: 0px;
+	margin: 0px;
+}
+
+.background{
+  opacity: var(--bg-opacity);
+}
+
+.content{
+  perspective: 1px;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  transform: translateZ(0);
+	perspective: 30px;
+	-webkit-perspective: 30px;
+}
+
+.shadow-3d{
+  box-shadow: inset -5px -5px 9px rgba(94,104,121,0.3), inset 5px 5px 9px rgba(255,255,255,0.3);
+}
+
+.nav1-open{
+  animation: nav1-animation 0.5s cubic-bezier(.5,-0.5,.5,1.5);
+
+}
+
+.nav3-open {
+  animation: nav3-animation 0.5s cubic-bezier(.5,-0.5,.5,1.5);
+
+}
+
+.nav1-close{
+  animation: nav1-animation-close 0.5s cubic-bezier(.5,-0.5,.5,1.5);
+}
+
+.nav3-close {
+
+  animation: nav3-animation-close 0.5s cubic-bezier(.5,-0.5,.5,1.5);
+}
+
+@keyframes nav1-animation {
+  0% {
+    transform: rotate(0);
+  }
+  50%{
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(10px) rotate(135deg);
+  }
+}
+@keyframes nav3-animation {
+  0% {
+    transform: rotate(0);
+  }
+  50%{
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(-10px) rotate(45deg);
+  }
+}
+@keyframes nav1-animation-close {
+  0% {
+    transform: translateY(10px) rotate(135deg);
+  }
+  50%{
+    transform: translateY(10px);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+@keyframes nav3-animation-close {
+  0% {
+    transform: translateY(-10px) rotate(45deg);
+  }
+  50%{
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
