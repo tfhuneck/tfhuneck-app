@@ -684,7 +684,7 @@ const About = () => {
                                 Abitur
                             </span>
                             <div className="ml-2">
-                                German seconday school diploma and matriculation examination, Focus in English & Economics
+                                German secondary school diploma and matriculation examination, Focus in English & Economics
                             </div>
                         </div>
                     </div>
