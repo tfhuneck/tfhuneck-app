@@ -730,7 +730,7 @@ const About = () => {
                 <div className='lg:col-span-7 flex min-h-fit flex-col justify-between px-5 pb-10 pt-10 sm:ml-2 sm:mr-2 lg:ml-4 lg:mr-20 mb-4 rounded-3xl mt-6
                 bg-gradient-to-tl from-slate-950/20 to-slate-50/20 dark:from-slate-50/10 dark:to-slate-900/10 dark:bg-opacity-10 
                 border-opacity-50 border-t-slate-300 border-t border-l-slate-300 border-l shadow-3d dark:drop-shadow-dark transition-all'> 
-                    <div className="text-3xl text-viking-800 dark:text-viking-400 mb-4">
+                    {/* <div className="text-3xl text-viking-800 dark:text-viking-400 mb-4">
                         Portfolio
                     </div>
                     <div className="">
@@ -741,7 +741,7 @@ const About = () => {
                     </div>
                     <div className=" mb-6">
                         Web Application for Restaurant - Built with MERN stack
-                    </div>
+                    </div> */}
                     <div className="text-3xl text-viking-800 dark:text-viking-400 mb-4">
                         Experience
                     </div>
@@ -759,7 +759,14 @@ const About = () => {
                                 Full Stack Web Developer
                             </span>
                             <div className="ml-2">
-                                Designing, developing and deploying web and multi- platform applications
+                                Designed, developed and deployed dynamic user and admin portal application with eBay api integration, built with
+                                React, express, NodeJs, MongoDB, and deployed on AWS with Elastic Beanstalk
+                            </div>
+                            <div className="ml-2">
+                                Designed, developed and shipped multi platform desktop application to collect and analyze market prices, built with React and Electron
+                            </div>
+                            <div className="ml-2">
+                                Designed, and developed, landing page with CMS capability for restaurant, built with React, express, NodeJS, MongoDB
                             </div>
                         </div>
                         <div className="col-span-1">
