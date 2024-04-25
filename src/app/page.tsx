@@ -7,7 +7,7 @@ import { easeInOut, motion } from "framer-motion"
 export default function Landing() {
   const router = useRouter()
   
-  setTimeout(() => router.push('/home'), 2500)
+  setTimeout(() => router.push('/home'), 1500)
   return (
     <>
     <motion.div

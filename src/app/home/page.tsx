@@ -102,13 +102,13 @@ export default function Home() {
             >
                 < Portfolio
                     data={consignmentPage}
-                    title='Dynamic SPA for Consignment Service'
+                    title='Dynamic Portal SPA for Consignment Service'
                 />
             </div>
             <div className='sm:snap-always sm:snap-center '>
                 < Portfolio
                     data={scraper}
-                    title='Cross Platform Price Scraping Application'
+                    title='Cross Platform Price Scraping Desktop Application'
                 />
             </div>
             <div className='sm:snap-always sm:snap-center'>

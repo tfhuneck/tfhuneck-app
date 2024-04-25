@@ -7,7 +7,7 @@ const consignmentPage = [
         The service demanded an interface that allows customers to view the status and auction results of their consignments, along with the ability to view and access the resulting sales balance.`,
       p2: `The primary purpose of this application is to enhance the user experience for the customers of the consignment service, and to improve efficiency of user management and interaction for the application administrator.`,
       p3: `The application was built around eBay’s developer program, and uses its apis to automate the collection and upkeep of data. This data of listed items is then displayed for both the service administrator and end users.`,
-      p4: `Finally the application calculates the sum of final sale prices along with the service fees collected, an doffers the users a feature to request and keep record of payouts.`
+      p4: `Finally the application calculates the sum of final sale prices along with the service fees collected, and offers the users a feature to request and keep record of payouts.`
     },  
     img: '/images/design.png'
   },
@@ -17,7 +17,7 @@ const consignmentPage = [
       p1: `The overall scope of this project was to built a User Portal with a clean dashboard that allows clients to effortlessly find and view the status and details of their consigned items throughout the various auction stages.`,
       p2: `The application needs to automatically track the auction process and selling status of the items listed on eBay and calculate the account balance for each user.`, 
       p3: `Endusers also need to be able to track their total balance as well as the payouts of individual listings. The users need to have the ability to request balance payouts.`,
-      p4: `Finally the application also demands an admin dashboard, to manage Users, view and manage consigned items, and manage user payout and account balances.`
+      p4: `Finally the application demands an admin dashboard, to manage Users, view and manage consigned items, and manage user payout and account balances.`
     },
     img: '/images/dashboards-ui.png'
   },
@@ -27,14 +27,14 @@ const consignmentPage = [
       p1: `The application is broken down into two parts: the user application, and the admin application. Both application are built and deployed in a similar fashion, but perform different functions.`,
       p2: `The user application delivers the user’s consignment data to the end users and allows the users to make payout requests.`,
       p3: `The admin application does frequent api calls to the ebay developer platform to retrieve and update data, and store this data in a serverless instance of Mongo DB. The admin application is also designed to handle user account management.`,
-      p4: `Both application are built with a React framework for the frontend and run on a NodeJs environment with an express Server. They are deployed in AWS VPC with the Elastic Beanstalk service. The deployment includes load balancer and several EC2 instances to ensure stable performance and proper application scaling.`,
+      p4: `Both application are built with a React framework for the frontend and an express server backend running in a NodeJs environment. They are deployed in AWS VPC with the Elastic Beanstalk service. The deployment includes load balancer and several EC2 instances to ensure stable performance and proper application scaling.`,
     },
     img: '/images/app-architecture.png'
   },
   {
     title: 'Design',
     text: {
-      p1: `In the process of designing this application I primarily had the two principles of simplicity and functionality in mind. Hence, I designed an user interface, that is simple to navigate, and focuses on the main functionalitis of finding listings and the account balance.`,   
+      p1: `In the process of designing this application I primarily had the two principles of simplicity and functionality in mind. Hence, I designed a user interface, that is simple to navigate, and focuses on the main functionality of finding listings and the account balance.`,   
       p2: `I decided to use the React framework for the ui, because it allowed me to build components that dynamically render the specific content for each user. In order to make the ui completely responsive for all device sizes, I made use of conditional rendering of alternative elements, along with css libraries for responsive and efficient styling.`, 
       p3: `After finishing the user dashboard, I took a similar approach for the design of the admin application. I followed the same principles of simplicity and functionality, in order to create an interface that makes it easy to keep oversight and manage the individual user accounts.`,
       p4: ``,
@@ -74,7 +74,7 @@ const consignmentPage = [
   {
     title: 'Admin',
     text: {
-      p1: `The admin dashboard is a comprehensive tool, that gives the admins complete overview over all listing data, and complete control over all user accounts.`,
+      p1: `The admin dashboard is a comprehensive tool, that gives the application admin complete overview over all listing data, and complete control over all user accounts.`,
       p2: `The application displays all listings as well as user specific listings in various tables that are designed in the same fashion as the user application. This allows the admins to quickly gain oversight of the status of the auction process.`,
       p3: `All users are accessible in the users management feature, which allows admins to view  and manage each users account details. By assigning a key to the user, the user account gets automatically connected to the correct listing data of the user. The admin also has the ability to manage the users transaction history by adding and removing payout transaction records.`,
       p4: `The admin dashboard will show all payout requests made by users, that can be confirmed or canceled to be then reflected in the user account. `,
