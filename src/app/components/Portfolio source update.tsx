@@ -9,30 +9,58 @@ enum ACTION {
   SELECT  = 'select'
 }
 
-const reducer = (state: any, action: any) => {
-  switch(action.type){
+interface ActionType {
+  type: ACTION,
+  increment: number,
+  valueText: string,
+  valueImg: string,
+  select: object,
+  
+}
+
+type state = {
+  counter : number,
+  displayText: object,
+  displayImg: object,
+}
+
+
+const reducer = (state? : state, action?: ActionType) => {
+  switch(action?.type){
     case ACTION.ROTATE:
       return {
-        counter: action.increment,
-        displayText: action.valueText,
-        displayImg: action.valueImg
+        counter: action?.increment,
+        displayText: action?.valueText,
+        displayImg: action?.valueImg
        }
     case ACTION.RESET:
       return{
         counter: 0,
-        displayText: action.valueText,
-        displayImg: action.valueImg
+        displayText: action?.valueText,
+        displayImg: action?.valueImg
       }
     case ACTION.SELECT: 
       return{
-        counter: action.select,
-        displayText: action.valueText,
-        displayImg: action.valueImg
+        counter: action?.select,
+        displayText: action?.valueText,
+        displayImg: action?.valueImg
       }
   }
 }
 
-const Portfolio = (props: any) => {
+const Portfolio = (props: {
+  title: string,
+  data : {
+    title: string,
+    text : {
+      p1: string,
+      p2: string,
+      p3: string,
+      p4: string,
+    },
+    img: string
+  }[]
+}) => {
   
   let content       = props.data;
   const initState   = {counter: 0, displayText: content[0].text, displayImg: content[0].img}
@@ -43,15 +71,15 @@ const Portfolio = (props: any) => {
   // states to control automatic carousel loop 
   const [ startRotate, setStartRotate ] = useState(true);
   const [ reTrigger, setReTrigger ]     = useState(0);
-  const [ timerId, setTimerId ]         = useState()
-  let timer: any;
+  const [ timerId, setTimerId ]         = useState(String)
+  let timer:string;
   
   // initializing counter to incrament through content array
   let newCount: number = 0;
 
   // loop function to call dispatch and change the content 
   const runRotate = async () => {
-    newCount            = state?.counter;
+    newCount            = state.counter;
     const textElement   = document.querySelector('#portfolio-text');
     const imageElement  = document.querySelector('#portfolio-image');
 
@@ -84,7 +112,7 @@ const Portfolio = (props: any) => {
 
     // check for rotation condition to retrigger recursion
     if(startRotate) {
-      timer = setTimeout(() => setReTrigger(reTrigger + 1), 15000)
+      timer = String(setTimeout(() => setReTrigger(reTrigger + 1), 15000))
       setTimerId(timer)
     }
     return timer;
@@ -110,11 +138,11 @@ const Portfolio = (props: any) => {
       textElement?.classList.remove('element-transition');
       imageElement?.classList.remove('element-transition');
     }, 2000);
-    timer = setTimeout(() => {
+    timer = String(setTimeout(() => {
       setReTrigger(reTrigger + 1);
       setTimerId(timer);
       setStartRotate(true);
-    }, 30000)
+    }, 30000))
   }
   
 
