@@ -8,17 +8,17 @@ import Link from "next/link";
 const initState               = {counter: 0, active: false, display: null}
 
 enum ACTION { 
-  INIT    = 'init',
-  PAUSE   = 'pause',
-  ACTIVE  = 'active',
-  ROTATE  = 'rotate',
-  RESET   = 'reset',
-  SELECT  = 'select',
+  INIT ,
+  PAUSE,
+  ACTIVE,
+  ROTATE,
+  RESET,
+  SELECT,
 }
 
 interface ActionType {
   type: ACTION,
-  setDisplay: HTMLElement | null,
+  setDisplay: any,
   setCounter: Number,
 }
 
@@ -155,7 +155,7 @@ const Portfolio = (props: {data: object[], title:string}) => {
     else{
       dispatch({type: ACTION.ROTATE, setCounter : state?.counter + 1, setDisplay: slides.current[state?.counter+1]})
       // console.log(state?.display.offsetHeight)
-      scrollTracker.current = scrollTracker.current + Number(state.display?.offsetHeight)
+      scrollTracker.current = scrollTracker.current + Number((state.display as HTMLDivElement | null)?.offsetHeight || 0);
       const animationKeyframes = {
         transform : `translateY(-${scrollTracker.current}px)`
       }
