@@ -5,6 +5,8 @@ import { useReducer, useEffect, useState, useRef, use } from "react";
 import { usePathname } from 'next/navigation'
 import Link from "next/link";
 
+const initState               = {counter: 0, active: false, display: null}
+
 enum ACTION { 
   INIT    = 'init',
   PAUSE   = 'pause',
@@ -14,7 +16,13 @@ enum ACTION {
   SELECT  = 'select',
 }
 
-const reducer = (state: any, action: any) => {
+interface ActionType {
+  type: ACTION,
+  setDisplay: HTMLElement | null,
+  setCounter: Number,
+}
+
+const reducer = (state: typeof initState, action: ActionType): typeof initState => {
   switch(action.type){
     case ACTION.INIT:
       return{
@@ -40,28 +48,28 @@ const reducer = (state: any, action: any) => {
     case ACTION.ROTATE:
       return {
         ...state,
-        counter: action.setCounter, 
+        counter: Number(action.setCounter), 
         active: true, 
         display: action.setDisplay,
        }
     case ACTION.RESET:
       return{
         ...state,
-        counter: action.setCounter, 
+        counter: Number(action.setCounter), 
         active: true, 
         display: action.setDisplay,
       }
     case ACTION.SELECT: 
       return{
         ...state,
-        counter: action.setCounter, 
+        counter: Number(action.setCounter), 
         active: true, 
         display: action.setDisplay,
       }
   }
 }
 
-const Portfolio = (props: any) => {
+const Portfolio = (props: {data: object[], title:string}) => {
 
   // Get route for Image Modal Link
   const pathname = usePathname()
@@ -72,19 +80,21 @@ const Portfolio = (props: any) => {
 
   // References to access slide elements and track rotation trigger
   const slides                  = useRef<any>([]);
-  const elementRef              = useRef<any>(null);
-  const slideContainer          = useRef<any>(null);
-  const scrollTracker           = useRef(0)
-  const timerId                 = useRef<String>();
-  const [ trigger, setTrigger ] = useState(0);
+  const elementRef              = useRef<HTMLDivElement>(null);
+  const slideContainer          = useRef<HTMLDivElement>(null);
+  const scrollTracker           = useRef<number>(0)
+  const timerId                 = useRef<number>();
+  const [ trigger, setTrigger ] = useState<number>(0);
 
   // reducer to control states displaying content
-  const initState               = {counter: 0, active: false, display: null}
   const [ state, dispatch ]     = useReducer(reducer, initState);
 
   // intialize function
   useEffect(() => {
-    dispatch({type: 'init', setDisplay : slides.current[0]})
+    return dispatch({
+      type: ACTION.INIT, setDisplay: slides.current[0],
+      setCounter: 0
+    });
   }, [slides, slides.current]);
 
   // function to oberseve elment coming into field of view and activating slide rotation
@@ -92,53 +102,75 @@ const Portfolio = (props: any) => {
     const observer = new IntersectionObserver((el) => {
       const element = el[0]
       if (element.isIntersecting ) { 
-        dispatch({type: 'active', setDisplay : slides.current[0], })
+        dispatch({
+          type: ACTION.ACTIVE, setDisplay: slides.current[0],
+          setCounter: 0,
+        })
         scrollTracker.current = 0 
         const animationKeyframes = {
           transform : `translateY(-${scrollTracker.current}px)`
         }
-        const animationTimimg = '500'
-        slideContainer.current.animate(animationKeyframes, animationTimimg)
-        setTimeout(() => slideContainer.current.style.transform = `translateY(-${scrollTracker.current}px)`, 500)
+        const animationTimimg = 500
+        slideContainer.current?.animate(animationKeyframes, animationTimimg)
+        setTimeout(() => {
+           if(slideContainer.current){
+            slideContainer.current.style.transform = `translateY(-${scrollTracker.current}px)`
+            }
+          }, 500)
+          
         // console.log('element is active')
-        timerId.current = String(setTimeout(() => setTrigger(trigger +1), 20000))
+        timerId.current = Number(setTimeout(() => setTrigger(trigger +1), 20000))
         // console.log('timer set', timerId.current)
       } 
       else{
-        dispatch({type: 'pause', })
+        dispatch({
+          type: ACTION.PAUSE,
+          setDisplay: state.display,
+          setCounter: 0,
+        })
         clearTimeout(String(timerId.current));
       } 
     })
-    observer.observe(elementRef.current)
+    if (elementRef.current) { 
+      observer.observe(elementRef.current);
+    }
   } ,[])
 
   // loop function to call dispatch and change the content 
   const runRotate = async () => {
     if(state?.counter == content.length -1 ){
-      dispatch({type: 'reset', setCounter : 0, setDisplay : slides.current[0], })
+      dispatch({type: ACTION.RESET, setCounter : 0, setDisplay : slides.current[0], })
       scrollTracker.current = 0 
       const animationKeyframes = {
         transform : `translateY(-${scrollTracker.current}px)`
       }
-      const animationTimimg = '500'
-      slideContainer.current.animate(animationKeyframes, animationTimimg)
-      setTimeout(() => slideContainer.current.style.transform = `translateY(-${scrollTracker.current}px)`, 500)
+      const animationTimimg = 500
+      slideContainer.current?.animate(animationKeyframes, animationTimimg)
+      setTimeout(() =>{ 
+        if(slideContainer.current) {
+          slideContainer.current.style.transform = `translateY(-${scrollTracker.current}px)`
+        }
+    }, 500)
     }
     else{
-      dispatch({type: 'rotate', setCounter : state?.counter + 1, setDisplay: slides.current[state?.counter+1]})
+      dispatch({type: ACTION.ROTATE, setCounter : state?.counter + 1, setDisplay: slides.current[state?.counter+1]})
       // console.log(state?.display.offsetHeight)
-      scrollTracker.current = scrollTracker.current + Number(state?.display.offsetHeight)
+      scrollTracker.current = scrollTracker.current + Number(state.display?.offsetHeight)
       const animationKeyframes = {
         transform : `translateY(-${scrollTracker.current}px)`
       }
-      const animationTimimg = '500'
-      slideContainer.current.animate(animationKeyframes, animationTimimg)
-      setTimeout(() => slideContainer.current.style.transform = `translateY(-${scrollTracker.current}px)`, 500)
+      const animationTimimg = 500
+      slideContainer.current?.animate(animationKeyframes, animationTimimg)
+      setTimeout(() =>{ 
+        if(slideContainer.current) {
+          slideContainer.current.style.transform = `translateY(-${scrollTracker.current}px)`
+        }
+    }, 500)
     }
 
     // check for rotation condition to retrigger recursion
     if(state?.active) {
-      timerId.current = String(setTimeout(() => setTrigger(trigger +1), 20000))
+      timerId.current = Number(setTimeout(() => setTrigger(trigger +1), 20000))
       // console.log(timerId.current )
       // console.log('timer set', timerId.current)
     }
@@ -150,15 +182,19 @@ const Portfolio = (props: any) => {
     let scrollValues = slides.current.map((i:any) => i.offsetHeight)
     let scrollLength = scrollValues.slice(0,e)
     let scrollTo = scrollLength.length === 0 ? 0 : scrollLength.length === 1 ? slides.current[0].offsetHeight : scrollLength.reduce((a:any,b:any) => a + b);
-    dispatch({type: 'select', setCounter : Number(e), setDisplay : slides.current[Number(e)] })
+    dispatch({type: ACTION.SELECT, setCounter : Number(e), setDisplay : slides.current[Number(e)] })
     scrollTracker.current = e * 500;
     const animationKeyframes = {
       transform : `translateY(-${scrollTo}px)`
     }
-    const animationTimimg = '500'
+    const animationTimimg = 500
 
-    slideContainer.current.animate(animationKeyframes, animationTimimg)
-    setTimeout(() =>slideContainer.current.style.transform = `translateY(-${scrollTo}px)`, 500)
+    slideContainer.current?.animate(animationKeyframes, animationTimimg)
+    setTimeout(() =>{
+      if(slideContainer.current){
+        slideContainer.current.style.transform = `translateY(-${scrollTo}px)`
+      }
+  }, 500)
   }
 
   // triggering the carousel loop 
