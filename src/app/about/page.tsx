@@ -7,8 +7,9 @@ const About = () => {
         <>
             <div className=" lg:grid lg:grid-cols-12">
                 <div className='lg:col-span-5 flex items-center min-h-fit flex-col justify-between px-5 pt-10 pb-10 sm:ml-2 sm:mr-2 lg:ml-10  rounded-3xl mt-6
-                bg-gradient-to-tl from-slate-950/20 to-slate-50/20 dark:from-slate-50/10 dark:to-slate-900/10 dark:bg-opacity-10 
-                border-opacity-50 border-t-slate-300 border-t border-l-slate-300 border-l shadow-3d dark:drop-shadow-dark transition-all'>
+                    bg-gradient-to-tl from-slate-950/20 to-slate-50/20 dark:from-slate-50/10 dark:to-slate-900/10 dark:bg-opacity-10 
+                    border-opacity-50 border-t-slate-300 border-t border-l-slate-300 border-l shadow-3d dark:drop-shadow-dark transition-all'
+                >
                     <div>
                         <Image
                         className="rounded-full"
