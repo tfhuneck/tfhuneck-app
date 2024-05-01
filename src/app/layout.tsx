@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
-import Nav from './components/Nav';
+import Nav from '@/components/Nav';
 import Image from 'next/image';
 import './globals.css';
 import { Providers } from './provider';
@@ -26,7 +26,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <Analytics/>
       <body className={montserrat.className} >
         <Providers>
           <Nav />
@@ -57,6 +56,7 @@ export default function RootLayout({
               {children}
             </div>
         </Providers>
+        <Analytics/>
       </body>
     </html>
   )

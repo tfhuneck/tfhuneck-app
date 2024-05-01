@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Portfolio from '../components/Portfolio';
+import Portfolio from '@/components/Portfolio';
 import consignmentPage from '@/lib/consignment';
 import scraper from '@/lib/scrape';
 import ork from '@/lib/ork';

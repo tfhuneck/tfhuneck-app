@@ -1,4 +1,4 @@
-import ImageModal from "@/app/components/modal";
+import ImageModal from "@/components/modal";
 import Image from "next/image";
 
 export default function viewImage ({params} : {params: {image:[string, any]}}) {
